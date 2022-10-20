@@ -1,0 +1,71 @@
+
+
+<div class="animate__animated animate__fadeIn card border-primary mb-3" style="width: 100%">
+
+
+    <div class="card-header">Colegios</div>
+        <div class="card-body text-primary">
+            <button 
+            
+            [routerLink]="['/gestion/colegio','nuevo']"
+            class="btn btn-outline-primary">
+                Nuevo Colegio
+            </button>
+            <hr/>
+        <h5 class="card-title">Listado Clientes (<small>{{totalRegistros}}</small>)</h5>
+
+        
+   
+      <div *ngIf="cargando" class="row">
+         
+
+            <div class="mx-auto" style="width: 200px;">
+                <div class="col mt-2  alert alert-primary " role="alert">
+                    Cargando
+                    <div class="spinner-border" role="status">
+                    </div>
+                
+                  </div>
+              </div>
+            
+  
+      </div>
+     
+
+
+        <table class="table table-striped table-bordered mt-2">
+            <thead>
+                <tr>
+                    <th >#</th>
+                    <th >Nombre</th>
+                    <th >Localidad</th>
+                    <th >email</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let colegio of colegios; let i=index;">
+                    <td class="w40 align-middle">{{ i + 1 + desde}}</td>
+                    <td class="w150">{{ colegio.nombre}}</td>
+                    <td class="w100">{{ colegio.localidad}}</td>    
+                    <td class="w150">{{ colegio.email }}</td>
+                    <td class="w70 align-middle">
+                        <button 
+                        [routerLink]="['/gestion/colegio', colegio._id ]"
+                        class="btn btn-outline-primary btn-sm">
+                        <i class="bi bi-clipboard-data"></i>
+                        </button>
+                        <button 
+                        (click)="borrarColegio( colegio )"
+                        class="btn btn-outline-danger btn-sm mx-2">
+                        <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button (click)="cambiarDesde(-5)" class="btn btn-secondary">Anteriores</button>
+        <button (click)="cambiarDesde(5)" class="btn btn-secondary mx-3">Siguientes</button>
+     </div>
+
+</div>

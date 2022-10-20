@@ -1,0 +1,40 @@
+<header>
+    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+        <img src="../../../assets/img/angular_logo.png" width="40" 
+            class="me-2" />
+        
+        <span class="fs-4">Curso de Angular - 2022</span>
+      </a>
+
+      <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+        <a class="me-3 py-2 text-dark text-decoration-none" 
+            routerLink="home">Home</a>
+  
+            <a *ngIf="true" class="nav-link dropdown-toggle me-3 py-2 text-dark text-decoration-none"
+             href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Gestión
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" [routerLink]="['/gestion/clientes']">Clientes - Template </a></li>
+              <li><a 
+                  [ngClass]="
+                  authService.token.length > 3 ? 
+                  'dropdown-item': 
+                  'dropdown-item'"
+                  [routerLink]="['/gestion/colegios']">Colegios - Reactive - Auth</a></li>
+            </ul>
+        
+        <div class="d-flex">
+          <button type="button"
+                  (click)="entrarSalir()"
+                  class="btn btn-outline-success">
+                  {{ authService.tituloBotonLogin}}</button>
+            <!-- <a class="btn btn-outline-success" 
+                routerLink="auth">{{ authService.tituloBotonLogin}}</a> -->
+        </div>
+      </nav>
+    </div>
+
+    
+  </header>

@@ -1,0 +1,140 @@
+<div class="animated fadeIn card border-primary mb-3" style="width: 100%">
+ 
+ 
+    <div class="card-header">Clientes</div>
+  
+  <div class="row">
+    
+    <div class="col-md-7">
+      <div class="card-body text-primary">
+        <form autocomplete="off"
+          (ngSubmit)="guardarCliente()" #fCliente="ngForm">
+          <div class="form-group">
+            <label for="identificador" class="col-form-label">Identificador</label>
+            <div>
+              <input 
+              type="text" 
+              class="form-control" 
+              name="identificador" 
+              [(ngModel)]="cliente.identificador"
+              id="inputIdentificador"
+              required              >
+              <span 
+              *ngIf="identificadorInvalido()"
+              class="form-text text-danger">
+                  Identificador incorrecto
+            </span>
+           
+            </div>
+         </div>
+  
+         <div class="form-group">
+          <label for="nombre" class="col-form-label">Nombre</label>
+          <div>
+            <input 
+            type="text" 
+            class="form-control" 
+            name="nombre" 
+            [(ngModel)]="cliente.nombre" 
+            id="inputNombre"
+            required
+            minlength="5"
+            >
+            <span 
+            *ngIf="nombreInvalido()"
+            class="form-text text-danger">
+                Nombre requerido y al menos de 5 letras
+          </span>
+          </div>
+       </div>
+  
+       <div class="form-group">
+          <label for="email" class="col-form-label">Email</label>
+          <div>
+            <input 
+            type="email" 
+            class="form-control" 
+            name="email" 
+            [(ngModel)]="cliente.email" 
+            id="inputEmail"
+            required
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+            >
+          </div>
+          <span 
+          *ngIf="emailInvalido()"
+          class="form-text text-danger">
+              Tienes que poner un email válido
+        </span>
+       </div>
+  
+       <div class="row">
+         <div class="col">
+          <div >
+            <button
+            [disabled]="fCliente.invalid"
+             class="btn btn-primary mt-2">{{ tituloBoton }}</button>
+
+            <button 
+            [routerLink]="['/gestion/clientes']"
+            class="btn btn-success mt-2 mx-3">Volver</button>
+
+          </div>
+       
+          <pre>{{ fCliente.valid }}</pre>
+  
+            
+         </div>
+                  
+         </div>
+  
+      </form>
+      </div>
+      
+      
+    </div>
+    
+  
+    <div class="col-md-5">
+    
+        <div class="card-body" align="center">
+            <h4 class="card-title">Foto del cliente</h4>
+            <h6 class="card-subtitle"></h6>
+  
+            <img *ngIf="!imagenTemp" [src]="cliente.clouds | imagen:'clientes'" class="w150">
+            <img *ngIf="imagenTemp" [src]="imagenTemp" class="w150">
+  
+           
+            <div class="mb-3">
+              <label for="formFileSm" class="form-label">Selecciona Imagen</label>
+              <input (change)="seleccionImagen( $event  )"
+                      class="form-control form-control-sm" 
+                      id="formFileSm" type="file">
+            </div>
+            
+  
+            <br>
+            <br>
+  
+            <button 
+            (click)="cambiarImagen()" [disabled]="!imagenSubir"
+            type="button" class="btn btn-block btn-success waves-effect waves-light m-r-10">
+            <i class="bi bi-save"></i> Actualizar Foto</button>
+  
+        </div>
+    
+    </div>
+  
+  
+  
+  </div>
+  
+ 
+  
+  
+  
+    
+  
+  
+  
+  </div>

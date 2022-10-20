@@ -1,0 +1,105 @@
+<app-subheader [titulo]="'Login'"></app-subheader>
+
+
+<div class="row">
+  <div class="col-md-3">
+
+  </div>
+
+
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Login</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Template</h6>
+        <hr>  
+        
+        <!-- Inicio del formulario -->
+        <form autocomplete="off"
+              (ngSubmit)="entrar( miFormulario )"
+              #miFormulario="ngForm">
+    
+        <div class="mb-3">
+          <label 
+              for="email" 
+              class="form-label">Email</label>
+          <input 
+
+            type="email"
+            class="form-control"
+            id="email" 
+            placeholder="correo electrónico"
+            ngModel="carlos1@gmail.com"
+            name="email"
+            required
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+            >
+
+            <span 
+              *ngIf="isEmailValido()"
+              class="form-text text-danger">
+                  Tiene que ser un correo válidos
+            </span>
+           
+            <!-- <span 
+              *ngIf="miFormulario.controls.email?.invalid && 
+                     miFormulario.controls.email?.touched"
+              class="form-text text-danger">
+                  Tiene que ser un correo válidos
+            </span> -->
+        </div>
+    
+        <div class="mb-3">
+          <label 
+              for="password" 
+              class="form-label">Password</label>
+          <input 
+            type="text"
+            class="form-control"
+            id="password" 
+            placeholder="password"
+            ngModel
+            name="password"
+            required
+            minlength="3"
+            >
+        </div>
+    
+    
+    
+    
+        <div class="row mb-1">
+          <div class="col">
+            
+            <button 
+              [disabled]="miFormulario.invalid"
+              class="btn btn-primary float-end" 
+              type="submit">Entrar</button>
+              
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div *ngIf="cargando"
+            class="spinner-border text-primary  float-end" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        </div>
+      </form>
+        <!-- Fin del Formulario -->
+    
+       
+        
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<pre>{{ miFormulario.valid }}</pre>
+<pre>{{ miFormulario.value | json }}</pre>
+
+<pre>Pristine (no se han cambiado valores de lo que había por defecto): {{ miFormulario.pristine }}</pre>
+<pre>Touched ( ha tocado el formulario ): {{ miFormulario.touched }}</pre>

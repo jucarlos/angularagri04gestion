@@ -1,0 +1,91 @@
+<div class="animated fadeIn card border-primary mb-3" style="width: 100%">
+
+
+    <div class="card-header">Colegios - Formularios Reactivos</div>
+
+    <div class="row">
+
+        <div class="col-md-7">
+            <div class="card-body text-primary">
+                <form  (ngSubmit)="guardar()"
+                    [formGroup]="formColegio"
+                        autocomplete="off">
+                    <!-- Nombre -->
+                    <div class="mb-3 row">
+                        <label for="inputNombre" class="col-sm-3 col-form-label">Nombre</label>
+                        <div class="col-sm-9">
+                          <input type="text"
+                                class="form-control"
+                                id="inputNombre"
+                                formControlName="nombre"
+                                >
+                            <!-- <span *ngIf="formColegio.controls.nombre.errors 
+                                    && formColegio.controls.nombre.touched"
+                                class="form-text text-danger">
+                                El nombre tiene que tener al menos 5 letras
+                            </span> -->
+                            <span *ngIf="campoInvalido('nombre')"
+                                class="form-text text-danger">
+                                El nombre tiene que tener al menos 5 letras
+                            </span>
+                        </div>
+                      </div>
+
+                      <!-- Localidad -->
+                      <div class="mb-3 row">
+                        <label for="inputLocalidad" class="col-sm-3 col-form-label">Localidad</label>
+                        <div class="col-sm-9">
+                          <input type="text" 
+                            class="form-control" 
+                            id="inputLocalidad"
+                            formControlName="localidad">
+                            <span *ngIf="campoInvalido('localidad')"
+                                    class="form-text text-danger">
+                                La localidad tiene que tener al menos 5 letras
+                            </span>
+                        </div>
+                      </div>
+                      <!-- Email -->
+                      <div class="mb-3 row">
+                        <label for="inputLocalidad" class="col-sm-3 col-form-label">Email</label>
+                        <div class="col-sm-9">
+                          <input 
+                            type="email" 
+                            class="form-control" 
+                            id="inputLocalidad"
+                            formControlName="email">
+                          <span  
+                            *ngIf="campoInvalido('email')" 
+                            class="form-text text-danger">
+                            Tienes que poner un email válido
+                        </span>
+                        </div>
+                      </div>
+
+                    
+                      <div class="row">
+                        <div class="col">
+                            <!-- [disabled]="formColegio.invalid" -->
+                            <button
+                          
+                            class="btn btn-primary mt-2"
+                            type="submit">{{ tituloBoton }}</button>
+
+                            <button 
+                            [routerLink]="['/gestion/colegios']"
+                            class="btn btn-success mt-2 mx-3">Volver</button>
+                        </div>
+                      </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <pre>Valid: {{ formColegio.valid }}</pre>
+    <pre>Pritine: {{ formColegio.pristine }}</pre>
+    <pre>Touched: {{ formColegio.touched }}</pre>
+
+
+
+</div>
